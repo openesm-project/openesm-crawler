@@ -25,7 +25,7 @@ MAX_RETRIES <- 5L
 BACKOFF_BASE_SECONDS <- 1
 BACKOFF_MAX_SECONDS <- 60
 RETRY_STATUS_CODES <- c(408L, 429L, 500L, 502L, 503L, 504L)
-TRIAGE_PROMPT_VERSION <- "v1"
+TRIAGE_PROMPT_VERSION <- "v3"
 
 if (LLM_API_KEY == "") {
   stop("Set LLM_API_KEY before running the triage script.")
@@ -56,6 +56,11 @@ candidates <- read.csv(
   na.strings = c("", "NA")
 )
 
+triage_columns <- c("triage_status", "relevant_esm", "empirical_study", "dataset_candidate", "data_access_status")
+if (any(triage_columns %in% names(candidates))) {
+  stop("Input CSV already contains triage columns; refusing to re-triage.")
+}
+
 required_columns <- c("title", "abstract_text")
 missing_columns <- setdiff(required_columns, names(candidates))
 if (length(missing_columns) > 0) {
@@ -80,8 +85,8 @@ parse_boolean <- function(value, field) {
   if (is.logical(value) && length(value) == 1L && !is.na(value)) {
     return(value)
   }
-  if (is.character(value) && length(value) == 1L && value %in% c("true", "false")) {
-    return(identical(value, "true"))
+  if (is.character(value) && length(value) == 1L && tolower(value) %in% c("true", "false")) {
+    return(identical(tolower(value), "true"))
   }
   stop(sprintf("Invalid boolean field: %s", field))
 }
@@ -148,6 +153,8 @@ request_with_retries <- function(request_object) {
     }
     return(response)
   }
+
+  stop("Retry loop exhausted without returning or throwing.")
 }
 
 build_prompt <- function(title, abstract, source, date, identifier) {
@@ -157,16 +164,38 @@ build_prompt <- function(title, abstract, source, date, identifier) {
   }
 
   paste0(
-    "Classify one literature-discovery candidate for an ESM/EMA dataset search. ",
-    "Use only the supplied metadata. Do not infer open data from the existence of a DOI. ",
-    "If the abstract is missing or evidence is insufficient, use conservative values and explain the uncertainty. ",
+    "Classify one literature-discovery candidate for an open ESM/EMA dataset and outreach queue. ",
+    "The target is original human-subject research that collects repeated measurements in daily life, ",
+    "such as experience sampling, ecological momentary assessment, ambulatory assessment, daily diary, ",
+    "intensive longitudinal, smartphone sensing, or wearable-plus-momentary data. ",
+    "A paper about a dataset is also relevant if the dataset itself is plausibly reusable. ",
+    "Use only the supplied metadata. Do not infer open data from a DOI, repository, or preprint alone. ",
+    "Do not infer data availability from a DOI, repository, preprint, or open-source code. ",
+    "If the abstract is missing or evidence is insufficient, be conservative. ",
     "Return exactly one JSON object and no surrounding prose.\n\n",
-    "Required JSON schema:\n",
-    '{"relevant_esm":true,"empirical_study":true,"data_openly_available":false,',
-    '"data_access_route":"unclear","priority":"medium","confidence":0.5,',
-    '"reason":"short evidence-based explanation"}\n\n',
-    "Allowed values: data_access_route = open, request, none, unclear; ",
-    "priority = high, medium, low; confidence is a number from 0 to 1.\n\n",
+    "Relevance rules:\n",
+    "- Set relevant_esm=false for unrelated uses of EMA, including exponential/moving-average methods, ",
+    "European Medicines Agency/regulatory topics, algorithms, machine learning, trading, engineering, ",
+    "chemistry, agriculture, software, or other non-human-behavior meanings.\n",
+    "- Set relevant_esm=false for reviews, scoping reviews, systematic reviews, commentaries, proposals, ",
+    "or methodological tutorials unless the abstract clearly describes a reusable ESM/EMA dataset.\n",
+    "- Set empirical_study=true only for original data collection or original analysis of a specified dataset; ",
+    "set it false for reviews, commentaries, proposals, and tutorials.\n",
+    "- Set dataset_candidate=true only when the metadata describes a reusable dataset or data deposit; ",
+    "otherwise set it false. A relevant paper can still have dataset_candidate=false.\n",
+    "- Do not treat the word EMA alone as evidence of ESM relevance.\n\n",
+    "Priority rules:\n",
+    "- high: relevant empirical ESM/EMA work with dataset_candidate=true and explicit open data evidence.\n",
+    "- medium: relevant empirical ESM/EMA work where access is not stated or explicitly restricted.\n",
+    "- low: irrelevant, non-empirical, title-only, weakly evidenced, or non-human-behavior records.\n\n",
+    "For data_access_status, use explicit_open only for explicit statements that the dataset is public, ",
+    "open, downloadable, or available from a named repository. Use explicit_restricted only for explicit access ",
+    "restrictions. Use not_stated when the metadata says nothing about data access. Use unclear only when the ",
+    "metadata is ambiguous or contradictory.\n\n",
+    "Required JSON fields: relevant_esm (boolean), empirical_study (boolean), ",
+    "dataset_candidate (boolean), data_access_status (one of explicit_open/explicit_restricted/not_stated/unclear), ",
+    "priority (one of high/medium/low), confidence (number from 0 to 1), ",
+    "and reason (short evidence-based string).\n\n",
     "Candidate metadata:\n",
     "source: ", source, "\n",
     "date: ", date, "\n",
@@ -186,6 +215,7 @@ triage_one <- function(candidate) {
   identifier <- if (doi != "") doi else raw_id
 
   prompt <- build_prompt(title, abstract, source, date, identifier)
+  # This spike assumes the provider supports OpenAI-compatible JSON mode.
   request_object <- request(paste0(str_remove(LLM_BASE_URL, "/+$"), "/chat/completions")) |>
     req_headers(
       Authorization = paste("Bearer", LLM_API_KEY),
@@ -214,8 +244,8 @@ triage_one <- function(candidate) {
   validated <- list(
     relevant_esm = parse_boolean(json_value(parsed, "relevant_esm"), "relevant_esm"),
     empirical_study = parse_boolean(json_value(parsed, "empirical_study"), "empirical_study"),
-    data_openly_available = parse_boolean(json_value(parsed, "data_openly_available"), "data_openly_available"),
-    data_access_route = parse_choice(json_value(parsed, "data_access_route"), "data_access_route", c("open", "request", "none", "unclear")),
+    dataset_candidate = parse_boolean(json_value(parsed, "dataset_candidate"), "dataset_candidate"),
+    data_access_status = parse_choice(json_value(parsed, "data_access_status"), "data_access_status", c("explicit_open", "explicit_restricted", "not_stated", "unclear")),
     priority = parse_choice(json_value(parsed, "priority"), "priority", c("high", "medium", "low")),
     confidence = parse_confidence(json_value(parsed, "confidence")),
     reason = safe_text(json_value(parsed, "reason"))
@@ -229,8 +259,8 @@ triage_one <- function(candidate) {
       triage_timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"),
       relevant_esm = validated$relevant_esm,
       empirical_study = validated$empirical_study,
-      data_openly_available = validated$data_openly_available,
-      data_access_route = validated$data_access_route,
+      dataset_candidate = validated$dataset_candidate,
+      data_access_status = validated$data_access_status,
       priority = validated$priority,
       confidence = validated$confidence,
       reason = validated$reason,
@@ -248,8 +278,8 @@ empty_result <- function(status, error_message) {
     triage_timestamp = format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z"),
     relevant_esm = NA,
     empirical_study = NA,
-    data_openly_available = NA,
-    data_access_route = NA_character_,
+    dataset_candidate = NA,
+    data_access_status = NA_character_,
     priority = NA_character_,
     confidence = NA_real_,
     reason = NA_character_,
@@ -273,7 +303,7 @@ for (row_number in seq_len(nrow(candidates))) {
       cli::cli_warn("Candidate {row_number} failed: {error$message}")
       error_status <- if (str_detect(
         error$message,
-        regex("JSON|syntax error|parse error|Missing JSON field|Invalid (boolean|data_access_route|priority|confidence)", ignore_case = TRUE)
+        regex("JSON|syntax error|parse error|Missing JSON field|Invalid (boolean|dataset_candidate|data_access_status|priority|confidence)", ignore_case = TRUE)
       )) "parse_error" else "api_error"
       empty_result(error_status, error$message)
     }
@@ -291,3 +321,11 @@ write.csv(output, file = TRIAGE_OUTPUT_CSV, row.names = FALSE, na = "")
 cli::cli_alert_success("Wrote {nrow(output)} rows to {TRIAGE_OUTPUT_CSV}")
 cli::cli_text("Successful classifications: {sum(output$triage_status == 'ok', na.rm = TRUE)}")
 cli::cli_text("Failed classifications: {sum(output$triage_status != 'ok', na.rm = TRUE)}")
+cli::cli_text("relevant_esm distribution:")
+print(table(output$relevant_esm, useNA = "ifany"))
+cli::cli_text("priority distribution:")
+print(table(output$priority, useNA = "ifany"))
+cli::cli_text("dataset_candidate distribution:")
+print(table(output$dataset_candidate, useNA = "ifany"))
+cli::cli_text("data_access_status distribution:")
+print(table(output$data_access_status, useNA = "ifany"))
