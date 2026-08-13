@@ -13,7 +13,7 @@ suppressPackageStartupMessages({
 # - no llm triage
 # - no email output/digests
 # - no scheduler/github action
-# - no state/ledger/files written
+# - no state/ledger/files written by default
 # - no pdf/full-text handling
 
 # -----------------------------
@@ -32,6 +32,7 @@ OPENALEX_MIN_INTERVAL_SECONDS <- 1.25
 # include a real address before running.
 OPENALEX_MAILTO <- Sys.getenv("OPENALEX_MAILTO", unset = "")
 USE_OPENALEX_POLITE_POOL <- OPENALEX_MAILTO != ""
+CANDIDATE_CSV <- Sys.getenv("CANDIDATE_CSV", unset = "")
 
 # optional: comma-separated known psyarxiv esm dois for abstract coverage probing.
 KNOWN_PSYARXIV_ESM_DOIS_ENV <- Sys.getenv("KNOWN_PSYARXIV_ESM_DOIS", unset = "")
@@ -681,6 +682,11 @@ candidates <- combined_deduped |>
   filter(prefilter_pass) |>
   mutate(date = as.character(date)) |>
   arrange(desc(date))
+
+if (CANDIDATE_CSV != "") {
+  write.csv(candidates, file = CANDIDATE_CSV, row.names = FALSE, na = "")
+  cli::cli_alert_success("Candidate object written to {CANDIDATE_CSV}")
+}
 
 # -----------------------------
 # diagnostics
