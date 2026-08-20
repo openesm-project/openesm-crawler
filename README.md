@@ -54,6 +54,7 @@ Run the second step locally after reviewing the discovery CSV:
 ```powershell
 $env:LLM_API_KEY="your-key"
 $env:LLM_BASE_URL="https://chat-ai.academiccloud.de/v1"
+<<<<<<< HEAD
 $env:LLM_MODEL="qwen3-30b-a3b-instruct-2507"
 $env:TRIAGE_INPUT_CSV="candidates.csv"
 $env:TRIAGE_OUTPUT_CSV="triage_v3.csv"
@@ -87,5 +88,14 @@ Optional repository variables:
 - `LLM_MODEL`
 
 The email address is kept as a secret even though OpenAlex only uses it for polite-pool identification. The workflow uploads only `weekly_report.md` as an artifact; it does not create issues or send email.
+=======
+$env:LLM_MODEL="meta-llama-3.1-8b-instruct"
+$env:TRIAGE_INPUT_CSV="candidates.csv"
+$env:TRIAGE_OUTPUT_CSV="triage.csv"
+Rscript triage_candidates.R
+```
+
+The script sends only titles and abstracts, requests JSON classifications, preserves every input row, and writes model results plus errors to `triage.csv`. Review high-priority and low-confidence rows manually. API keys are read from the environment and are not written to the output.
+>>>>>>> 9dabbaa786cb29cc2cd932f8f8153e1c5da9e422
 
 To use another OpenAI-compatible provider or a local service, change `LLM_BASE_URL`, `LLM_MODEL`, and `LLM_API_KEY`.
