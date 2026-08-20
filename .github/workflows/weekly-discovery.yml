@@ -1,0 +1,51 @@
+name: Weekly ESM discovery report
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 8 * * 1"
+
+permissions:
+  contents: read
+
+jobs:
+  weekly-discovery:
+    runs-on: ubuntu-latest
+    env:
+      OPENALEX_MAILTO: ${{ secrets.OPENALEX_MAILTO }}
+      LOOKBACK_DAYS: "7"
+      LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+      LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://chat-ai.academiccloud.de/v1' }}
+      LLM_MODEL: ${{ vars.LLM_MODEL || 'meta-llama-3.1-8b-instruct' }}
+      LLM_DELAY_SECONDS: "2"
+      CANDIDATE_CSV: candidates.csv
+      TRIAGE_INPUT_CSV: candidates.csv
+      TRIAGE_OUTPUT_CSV: triage_v3.csv
+      REPORT_OUTPUT_MD: weekly_report.md
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install R packages
+        run: |
+          Rscript -e 'install.packages(c("httr2", "jsonlite", "dplyr", "stringr", "purrr", "cli"), repos = "https://cloud.r-project.org")'
+
+      - name: Run discovery
+        run: Rscript step1_esm_discovery_spike.R
+
+      - name: Run LLM triage
+        run: Rscript triage_candidates.R
+
+      - name: Generate Markdown report
+        run: Rscript weekly_report.R
+
+      - name: Upload weekly report
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-esm-report
+          path: weekly_report.md
+          if-no-files-found: error
