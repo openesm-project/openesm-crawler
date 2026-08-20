@@ -6,7 +6,7 @@ on:
     - cron: "17 8 * * 1"
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   weekly-discovery:
@@ -18,10 +18,9 @@ jobs:
       LLM_BASE_URL: ${{ vars.LLM_BASE_URL || 'https://chat-ai.academiccloud.de/v1' }}
       LLM_MODEL: ${{ vars.LLM_MODEL || 'meta-llama-3.1-8b-instruct' }}
       LLM_DELAY_SECONDS: "2"
-      CANDIDATE_CSV: candidates.csv
-      TRIAGE_INPUT_CSV: candidates.csv
-      TRIAGE_OUTPUT_CSV: triage_v3.csv
-      REPORT_OUTPUT_MD: weekly_report.md
+      CANDIDATE_CSV: output/candidates.csv
+      TRIAGE_INPUT_CSV: output/candidates.csv
+      TRIAGE_OUTPUT_CSV: output/triage_v3.csv
 
     steps:
       - name: Check out repository
@@ -41,18 +40,36 @@ jobs:
             any::purrr
             any::cli
 
+      - name: Prepare output directories
+        run: mkdir -p output reports
+
       - name: Run discovery
-        run: Rscript step1_esm_discovery_spike.R
+        run: Rscript scripts/step1_esm_discovery_spike.R
 
       - name: Run LLM triage
-        run: Rscript triage_candidates.R
+        run: Rscript scripts/triage_candidates.R
+
+      - name: Compute report path
+        id: report
+        run: echo "path=reports/weekly-report-$(date -u +%Y-%m-%d).md" >> "$GITHUB_OUTPUT"
 
       - name: Generate Markdown report
-        run: Rscript weekly_report.R
+        env:
+          REPORT_OUTPUT_MD: ${{ steps.report.outputs.path }}
+        run: Rscript scripts/weekly_report.R
 
       - name: Upload weekly report
         uses: actions/upload-artifact@v4
         with:
           name: weekly-esm-report
-          path: weekly_report.md
+          path: ${{ steps.report.outputs.path }}
           if-no-files-found: error
+
+      - name: Commit weekly report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add "${{ steps.report.outputs.path }}"
+          git commit -m "Add weekly ESM discovery report for $(date -u +%Y-%m-%d)" || echo "No changes to commit"
+          git push
+

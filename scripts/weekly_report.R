@@ -5,15 +5,15 @@ suppressPackageStartupMessages({
   library(stringr)
 })
 
-TRIAGE_INPUT_CSV <- Sys.getenv("TRIAGE_INPUT_CSV", unset = "triage_v3.csv")
+TRIAGE_OUTPUT_CSV <- Sys.getenv("TRIAGE_OUTPUT_CSV", unset = "triage_v3.csv")
 REPORT_OUTPUT_MD <- Sys.getenv("REPORT_OUTPUT_MD", unset = "weekly_report.md")
 
-if (!file.exists(TRIAGE_INPUT_CSV)) {
-  stop(sprintf("Triage CSV does not exist: %s", TRIAGE_INPUT_CSV))
+if (!file.exists(TRIAGE_OUTPUT_CSV)) {
+  stop(sprintf("Triage CSV does not exist: %s", TRIAGE_OUTPUT_CSV))
 }
 
 triage <- read.csv(
-  TRIAGE_INPUT_CSV,
+  TRIAGE_OUTPUT_CSV,
   stringsAsFactors = FALSE,
   check.names = FALSE,
   na.strings = c("", "NA")
@@ -115,7 +115,7 @@ lines <- c(
   "# Weekly ESM discovery report",
   "",
   paste0("Generated: ", format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z")),
-  paste0("Input: `", TRIAGE_INPUT_CSV, "`"),
+  paste0("Input: `", TRIAGE_OUTPUT_CSV, "`"),
   "",
   "## Summary",
   "",

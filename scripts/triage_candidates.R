@@ -314,7 +314,13 @@ for (row_number in seq_len(nrow(candidates))) {
   }
 }
 
-triage_columns <- bind_rows(results)
+empty_result_columns <- names(empty_result(NA_character_, NA_character_))
+triage_columns <- if (length(results) > 0) {
+  bind_rows(results)
+} else {
+  # bind_rows(list()) drops columns entirely; keep the schema for zero-candidate runs.
+  as.data.frame(setNames(replicate(length(empty_result_columns), logical(0), simplify = FALSE), empty_result_columns))
+}
 output <- bind_cols(candidates, triage_columns)
 write.csv(output, file = TRIAGE_OUTPUT_CSV, row.names = FALSE, na = "")
 
