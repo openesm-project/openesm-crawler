@@ -473,6 +473,17 @@ fetch_osf_preprints <- function(start_date, end_date) {
 
   osf_date_filter_used <- "date_published"
   osf_date_filter_fallback <- FALSE
+  osf_terminated_early <- FALSE
+  osf_termination_reason <- NA_character_
+
+  empty_osf_rows <- function() {
+    data.frame(
+      doi_raw = character(), doi = character(), source = character(), date = character(),
+      title = character(), abstract_text = character(), abstract_available = logical(),
+      linked_project_available = logical(), raw_id = character(), matched_query_term = character(),
+      stringsAsFactors = FALSE
+    )
+  }
 
   all_rows <- tryCatch(
     fetch_with_filter_field("date_published"),
@@ -480,12 +491,23 @@ fetch_osf_preprints <- function(start_date, end_date) {
       osf_date_filter_used <<- "date_created"
       osf_date_filter_fallback <<- TRUE
       cli::cli_warn("OSF date_published filtering failed; falling back to date_created window filtering.")
-      fetch_with_filter_field("date_created")
+      tryCatch(
+        fetch_with_filter_field("date_created"),
+        error = function(e2) {
+          # a persistent OSF outage should not discard results already fetched from other sources.
+          osf_terminated_early <<- TRUE
+          osf_termination_reason <<- e2$message
+          cli::cli_warn(sprintf("OSF fetch failed after fallback; continuing without OSF records: %s", e2$message))
+          empty_osf_rows()
+        }
+      )
     }
   )
 
   attr(all_rows, "osf_date_filter_used") <- osf_date_filter_used
   attr(all_rows, "osf_date_filter_fallback") <- osf_date_filter_fallback
+  attr(all_rows, "osf_terminated_early") <- osf_terminated_early
+  attr(all_rows, "osf_termination_reason") <- osf_termination_reason
   attr(all_rows, "osf_relationship_paths") <- paste(OSF_RELATIONSHIP_PATHS, collapse = " | ")
 
   all_rows
@@ -613,6 +635,13 @@ osf_raw <- fetch_osf_preprints(START_DATE, END_DATE)
 osf_date_filter_used <- attr(osf_raw, "osf_date_filter_used")
 osf_date_filter_fallback <- isTRUE(attr(osf_raw, "osf_date_filter_fallback"))
 osf_relationship_paths <- attr(osf_raw, "osf_relationship_paths")
+
+if (isTRUE(attr(osf_raw, "osf_terminated_early"))) {
+  cli::cli_alert_warning(sprintf(
+    "OSF fetch failed; continuing with 0 OSF records: %s",
+    attr(osf_raw, "osf_termination_reason")
+  ))
+}
 
 combined_raw <- bind_rows(openalex_raw, osf_raw)
 
