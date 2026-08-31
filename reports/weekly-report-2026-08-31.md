@@ -1,0 +1,785 @@
+# Weekly ESM discovery report
+
+Generated: 2026-08-31 16:23:21 UTC
+Input: `output/triage_v3.csv`
+
+## Summary
+
+- Records fetched for triage: 150
+- Successful classifications: 150
+- Relevant ESM/EMA candidates: 76
+- Excluded as irrelevant: 74
+- API or parse errors: 0
+
+Source counts:
+
+| Source | Records |
+| --- | ---: |
+| openalex | 134 |
+| osf_psyarxiv | 16 |
+
+## High-priority candidates
+
+- **[Few-shot personalisation of notification-receptivity ranking: how much of a person's own data is needed before it beats a population model?](https://doi.org/10.17605/osf.io/vmgzy)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.9
+  - Dataset candidate: FALSE
+  - Data status: explicit_open
+  - Reason: Secondary analysis of the public LifeSnaps dataset, which is explicitly stated to be open (CC BY 4.0) and available from Zenodo (7229547)
+
+## Medium-priority candidates
+
+- **[Screen Time and Next-Day Mood in Teenagers: A 14-Day Diary Study](https://doi.org/10.17605/osf.io/2rfw4)**
+  - Date: 2026-08-30
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original data collection with a specified dataset, but data access status is not stated.
+- **[From peaks to plummets—linking sleep, effort, and absorption to trajectories of energetic activation during the day](https://doi.org/10.1007/s10869-026-10144-w)**
+  - Date: 2026-08-28
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit information about data access or availability.
+- **[Personality trait and state associations with cognitive functioning and variability in middle-aged and older adults](https://doi.org/10.1093/geronb/gbag179)**
+  - Date: 2026-08-28
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit data access information, but mentions a study with N=183 participants.
+- **[Scroll and Snack: Daily Life Exposure to Healthy Food Content on Instagram Boosts Cravings for Healthy Snacks](https://doi.org/10.31234/osf.io/anpt3_v1)**
+  - Date: 2026-08-28
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with a specified dataset, but no explicit open data evidence.
+- **[Understanding daily positive emotion regulation: examining associations with momentary emotions and anhedonia](https://doi.org/10.1007/s11031-026-10274-x)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with ESM study, but no information about data availability.
+- **[Prospective Links between Intraindividual Measures of Negative Affect and Physical Well-being among Couples Coping with Cancer](https://doi.org/10.1097/psy.0000000000001522)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit data access information, but mentions ecological momentary assessments.
+- **[Is Moral Identity Flexible or Firm? Evidence From Experience Sampling Data](https://doi.org/10.1111/jopy.70096)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM data, but no information about data availability or deposit.
+- **[The impact of Trauma-Focused Cognitive Behaviour Therapy for psychosis on post-traumatic stress symptoms in daily life: ESM outcomes of the STAR Trial.](https://doi.org/10.1159/pps/aemag010)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM study with repeated measurements in daily life, but no information about dataset availability.
+- **[Wise Empathy Improves Well-being on Instagram](https://openalex.org/W7165295921)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA work with experience sampling and ecological momentary intervention, but no explicit information about dataset availability.
+- **[Scroll and Snack: Daily Life Exposure to Healthy Food Content on Instagram Boosts Cravings for Healthy Snacks](https://openalex.org/W7204739653)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with smartphone ecological momentary assessment protocol, but no explicit statement about data availability.
+- **[An experience sampling study on teacher dynamics when teaching sensitive and controversial issues.](https://doi.org/10.17605/osf.io/gzfrv)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original ESM study with a reusable dataset, but no explicit information about data access.
+- **[Associations of Active and Passive Social Media Use with Well-Being: Behavioural Insights From Smartphone Sensing](https://doi.org/10.23668/psycharchives.22407)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM/EMA methods, but no explicit mention of dataset availability or deposit.
+- **[Protocol of the CHILL 2.0 Study: Optimizing, Explaining, and Sustaining Neuroticism Change](https://doi.org/10.31234/osf.io/wmk6g_v1)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit information about data access or reusability.
+- **[Capturing the temporal dynamics of personality in daily life: The Personality and Contextualized Experiences (PACE) Study](https://openalex.org/W7126727310)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original ESM study with a described dataset, but no explicit statement about data access.
+- **[Capturing the temporal dynamics of personality in daily life: The Personality and Contextualized Experiences (PACE) Study](https://osf.io/9g2sq/)**
+  - Date: 2026-08-26
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original ESM study with a large dataset, but no explicit statement about data access.
+- **[A Single Reading of a Self-Help Book Reduces Perceived Problem Burden and State Anxiety and Increases Vitality, With Gains Maintained at Four Weeks: A Preregistered Randomized Controlled Trial in 2,004 Adults](https://osf.io/bv24y/)**
+  - Date: 2026-08-26
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no mention of data availability or deposit.
+- **[Early warning signals of sudden changes in daily step count: an intensive longitudinal study of over 20,000 adults](https://doi.org/10.1038/s44437-026-00003-4)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit information about dataset availability.
+- **[Unresolved craving and the transition to snacking in daily life](https://doi.org/10.31234/osf.io/etyms_v1)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: EMA study with original data collection, but no explicit information about data availability or reuse.
+- **[Wise Empathy Improves Well-being on Instagram](https://osf.io/my6qw/)**
+  - Date: 2026-08-25
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA work with experience sampling and ecological momentary intervention, but no explicit data deposit or open data evidence.
+- **[Unresolved craving and the transition to snacking in daily life](https://osf.io/etyms/)**
+  - Date: 2026-08-25
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit mention of data availability or restrictions, but the study is based on a preregistered EMA study, suggesting the possibility of data reuse.
+- **[Affective Reactivity and Approach-Avoidance Behavior in Daily Life: Insights from Vignettes and Ambulatory Assessment Data](https://doi.org/10.31234/osf.io/cvgu8_v1)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit mention of data availability or deposit.
+- **[A Stress Beliefs Intervention Reduces Daily Somatic Symptoms and Negative Affect: Results of a Two-Center Randomized Controlled Trial](https://doi.org/10.31234/osf.io/nhbtf_v1)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA data collection, but no information about data availability or reusability.
+- **[SmartDyn Project: Supplementary Materials](https://doi.org/10.5281/zenodo.22010072)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: The abstract describes a dataset collection for a study, and the repository will receive further updates, but it does not explicitly state that the dataset is open or restricted.
+- **[SmartDyn Project: Supplementary Materials](https://doi.org/10.5281/zenodo.22010073)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: The abstract describes a dataset repository for a study using intensive longitudinal methods, but does not explicitly state that the dataset is open or restricted.
+- **[My Personality—Wrapped: Protocol for a Measurement-Burst Design Study to Investigate the Development and Dynamics of Individual Differences Across Time](https://openalex.org/W7204508596)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original data collection with a reusable dataset described, but no explicit open data evidence.
+- **[A Stress Beliefs Intervention Reduces Daily Somatic Symptoms and Negative Affect: Results of a Two-Center Randomized Controlled Trial](https://openalex.org/W7204282081)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract describes a randomized controlled trial using ecological momentary assessment, but does not mention data availability or deposit.
+- **[Unresolved craving and the transition to snacking in daily life](https://openalex.org/W7204500586)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA study with a specified dataset, but no explicit information about data access or availability.
+- **[Affective Reactivity and Approach-Avoidance Behavior in Daily Life: Insights from Vignettes and Ambulatory Assessment Data](https://osf.io/cvgu8/)**
+  - Date: 2026-08-24
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit mention of data availability or deposit.
+- **[A Stress Beliefs Intervention Reduces Daily Somatic Symptoms and Negative Affect: Results of a Two-Center Randomized Controlled Trial](https://osf.io/nhbtf/)**
+  - Date: 2026-08-24
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA data collection, but no information about data availability.
+
+## Explicit open-data evidence
+
+- **[Few-shot personalisation of notification-receptivity ranking: how much of a person's own data is needed before it beats a population model?](https://doi.org/10.17605/osf.io/vmgzy)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.9
+  - Dataset candidate: FALSE
+  - Data status: explicit_open
+  - Reason: Secondary analysis of the public LifeSnaps dataset, which is explicitly stated to be open (CC BY 4.0) and available from Zenodo (7229547)
+
+## Relevant, access not stated
+
+- **[Screen Time and Next-Day Mood in Teenagers: A 14-Day Diary Study](https://doi.org/10.17605/osf.io/2rfw4)**
+  - Date: 2026-08-30
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original data collection with a specified dataset, but data access status is not stated.
+- **[From peaks to plummets—linking sleep, effort, and absorption to trajectories of energetic activation during the day](https://doi.org/10.1007/s10869-026-10144-w)**
+  - Date: 2026-08-28
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit information about data access or availability.
+- **[Personality trait and state associations with cognitive functioning and variability in middle-aged and older adults](https://doi.org/10.1093/geronb/gbag179)**
+  - Date: 2026-08-28
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit data access information, but mentions a study with N=183 participants.
+- **[Scroll and Snack: Daily Life Exposure to Healthy Food Content on Instagram Boosts Cravings for Healthy Snacks](https://doi.org/10.31234/osf.io/anpt3_v1)**
+  - Date: 2026-08-28
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with a specified dataset, but no explicit open data evidence.
+- **[Understanding daily positive emotion regulation: examining associations with momentary emotions and anhedonia](https://doi.org/10.1007/s11031-026-10274-x)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with ESM study, but no information about data availability.
+- **[Prospective Links between Intraindividual Measures of Negative Affect and Physical Well-being among Couples Coping with Cancer](https://doi.org/10.1097/psy.0000000000001522)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit data access information, but mentions ecological momentary assessments.
+- **[Is Moral Identity Flexible or Firm? Evidence From Experience Sampling Data](https://doi.org/10.1111/jopy.70096)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM data, but no information about data availability or deposit.
+- **[The impact of Trauma-Focused Cognitive Behaviour Therapy for psychosis on post-traumatic stress symptoms in daily life: ESM outcomes of the STAR Trial.](https://doi.org/10.1159/pps/aemag010)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM study with repeated measurements in daily life, but no information about dataset availability.
+- **[Wise Empathy Improves Well-being on Instagram](https://openalex.org/W7165295921)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA work with experience sampling and ecological momentary intervention, but no explicit information about dataset availability.
+- **[Scroll and Snack: Daily Life Exposure to Healthy Food Content on Instagram Boosts Cravings for Healthy Snacks](https://openalex.org/W7204739653)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with smartphone ecological momentary assessment protocol, but no explicit statement about data availability.
+- **[An experience sampling study on teacher dynamics when teaching sensitive and controversial issues.](https://doi.org/10.17605/osf.io/gzfrv)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original ESM study with a reusable dataset, but no explicit information about data access.
+- **[Associations of Active and Passive Social Media Use with Well-Being: Behavioural Insights From Smartphone Sensing](https://doi.org/10.23668/psycharchives.22407)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM/EMA methods, but no explicit mention of dataset availability or deposit.
+- **[Protocol of the CHILL 2.0 Study: Optimizing, Explaining, and Sustaining Neuroticism Change](https://doi.org/10.31234/osf.io/wmk6g_v1)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit information about data access or reusability.
+- **[Capturing the temporal dynamics of personality in daily life: The Personality and Contextualized Experiences (PACE) Study](https://openalex.org/W7126727310)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original ESM study with a described dataset, but no explicit statement about data access.
+- **[Capturing the temporal dynamics of personality in daily life: The Personality and Contextualized Experiences (PACE) Study](https://osf.io/9g2sq/)**
+  - Date: 2026-08-26
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original ESM study with a large dataset, but no explicit statement about data access.
+- **[A Single Reading of a Self-Help Book Reduces Perceived Problem Burden and State Anxiety and Increases Vitality, With Gains Maintained at Four Weeks: A Preregistered Randomized Controlled Trial in 2,004 Adults](https://osf.io/bv24y/)**
+  - Date: 2026-08-26
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no mention of data availability or deposit.
+- **[Early warning signals of sudden changes in daily step count: an intensive longitudinal study of over 20,000 adults](https://doi.org/10.1038/s44437-026-00003-4)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit information about dataset availability.
+- **[Unresolved craving and the transition to snacking in daily life](https://doi.org/10.31234/osf.io/etyms_v1)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: EMA study with original data collection, but no explicit information about data availability or reuse.
+- **[Wise Empathy Improves Well-being on Instagram](https://osf.io/my6qw/)**
+  - Date: 2026-08-25
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA work with experience sampling and ecological momentary intervention, but no explicit data deposit or open data evidence.
+- **[Unresolved craving and the transition to snacking in daily life](https://osf.io/etyms/)**
+  - Date: 2026-08-25
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit mention of data availability or restrictions, but the study is based on a preregistered EMA study, suggesting the possibility of data reuse.
+- **[Affective Reactivity and Approach-Avoidance Behavior in Daily Life: Insights from Vignettes and Ambulatory Assessment Data](https://doi.org/10.31234/osf.io/cvgu8_v1)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit mention of data availability or deposit.
+- **[A Stress Beliefs Intervention Reduces Daily Somatic Symptoms and Negative Affect: Results of a Two-Center Randomized Controlled Trial](https://doi.org/10.31234/osf.io/nhbtf_v1)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA data collection, but no information about data availability or reusability.
+- **[SmartDyn Project: Supplementary Materials](https://doi.org/10.5281/zenodo.22010072)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: The abstract describes a dataset collection for a study, and the repository will receive further updates, but it does not explicitly state that the dataset is open or restricted.
+- **[SmartDyn Project: Supplementary Materials](https://doi.org/10.5281/zenodo.22010073)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: The abstract describes a dataset repository for a study using intensive longitudinal methods, but does not explicitly state that the dataset is open or restricted.
+- **[My Personality—Wrapped: Protocol for a Measurement-Burst Design Study to Investigate the Development and Dynamics of Individual Differences Across Time](https://openalex.org/W7204508596)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original data collection with a reusable dataset described, but no explicit open data evidence.
+- **[A Stress Beliefs Intervention Reduces Daily Somatic Symptoms and Negative Affect: Results of a Two-Center Randomized Controlled Trial](https://openalex.org/W7204282081)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract describes a randomized controlled trial using ecological momentary assessment, but does not mention data availability or deposit.
+- **[Unresolved craving and the transition to snacking in daily life](https://openalex.org/W7204500586)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA study with a specified dataset, but no explicit information about data access or availability.
+- **[Affective Reactivity and Approach-Avoidance Behavior in Daily Life: Insights from Vignettes and Ambulatory Assessment Data](https://osf.io/cvgu8/)**
+  - Date: 2026-08-24
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit mention of data availability or deposit.
+- **[A Stress Beliefs Intervention Reduces Daily Somatic Symptoms and Negative Affect: Results of a Two-Center Randomized Controlled Trial](https://osf.io/nhbtf/)**
+  - Date: 2026-08-24
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA data collection, but no information about data availability.
+- **[Daily Happiness in Contexts: Associations of Activities, Social Companions, and Humor Use across Two 2-Month Experience Sampling Studies](https://doi.org/10.1007/s10902-026-01095-3)**
+  - Date: 2026-08-29
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no evidence of a reusable dataset or open data.
+- **[Understanding the Impact of Psychological Interventions for Psychosis in Daily Life: Experience Sampling Methodology as an Adjunct Outcome Measure in Clinical Trials](https://doi.org/10.31234/osf.io/65r7y_v1)**
+  - Date: 2026-08-29
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper discusses the use of ESM in clinical trials, but does not describe a reusable dataset or data deposit.
+- **[Wise Empathy Improves Well-being on Instagram](https://osf.io/my6qw/)**
+  - Date: 2026-08-28
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM/EMA methods, but no information about dataset availability or reuse.
+- **[Emotional conceptual structures in high depression and anxiety: Combining low-dimensional and network models.](https://doi.org/10.1037/emo0001736)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with ESM, but no clear indication of dataset availability or reusability.
+- **[Daily Boredom and Daily Life Satisfaction: A Daily Diary Study of Meaning in Life as a Mediator](https://doi.org/10.1111/sjop.70140)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with daily diary design, but no mention of data availability or deposit.
+- **[Immediate effects of body talk on body image in daily life: An experience sampling study](https://doi.org/10.31234/osf.io/x6gz3_v1)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM/EMA methods, but no information about dataset availability or reuse.
+- **[Leveraging Personality Assessment to Better Understand Traumatic Stress and Discrimination in Daily Life](https://doi.org/10.1080/00223891.2026.2712441)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM, but no mention of dataset availability or deposit.
+- **[Daily Alcohol Use and Next-Day Intimate Partner Sexual Violence: Within-Person Associations and Individual Variability](https://doi.org/10.15288/jsad.26-00133)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study using experience sampling methods, but no information about dataset availability or reusability.
+- **[A Single Reading of a Self-Help Book Reduces Perceived Problem Burden and State Anxiety and Increases Vitality, With Gains Maintained at Four Weeks: A Preregistered Randomized Controlled Trial in 2,004 Adults](https://doi.org/10.31234/osf.io/bv24y_v2)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements, but no explicit mention of dataset availability or open data.
+- **[Forecasting next-day urge to drink without craving’s own history: an individualized analysis of responsive EMA in residential alcohol-use-disorder recovery](https://openalex.org/W7204611296)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA work, but no dataset deposit or open data evidence mentioned.
+- **[Protocol of the CHILL 2.0 Study: Optimizing, Explaining, and Sustaining Neuroticism Change](https://openalex.org/W7204612518)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract describes a protocol for a study with repeated assessments and a smartphone-based intervention, but it does not mention data availability or deposit.
+- **[Protocol of the CHILL 2.0 Study: Optimizing, Explaining, and Sustaining Neuroticism Change](https://osf.io/wmk6g/)**
+  - Date: 2026-08-26
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit mention of data availability or deposit.
+- **[My Personality—Wrapped: Protocol for a Measurement-Burst Design Study to Investigate the Development and Dynamics of Individual Differences Across Time](https://doi.org/10.31234/osf.io/r6hbd_v1)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM/EMA methods, but no evidence of a reusable dataset or open data.
+- **[Is Poor Sleep Associated with Greater Pain-Related Disability? A Multilevel Analysis of Ecological Momentary Assessment Data in Individuals with Chronic Primary Pain](https://openalex.org/W7204503886)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title and abstract suggest ESM/EMA study, but no information about dataset availability or open data.
+- **[My Personality—Wrapped: Protocol for a Measurement-Burst Design Study to Investigate the Development and Dynamics of Individual Differences Across Time](https://osf.io/r6hbd/)**
+  - Date: 2026-08-25
+  - Source: osf_psyarxiv
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original data collection described, but no evidence of open data or dataset deposit.
+- **[Treatment of anxiety in athletes using cognitive behavioral therapy: A single-case experimental design with multiple baselines.](https://doi.org/10.17505/jpor.2026.29449)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no dataset deposit mentioned.
+- **[A deep dive into EMA random sampling: Considerations for designing an EMA study (Preprint)](https://doi.org/10.2196/preprints.110314)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper discusses EMA study design and execution, but does not describe a reusable dataset or data deposit.
+- **[Affective Reactivity and Approach-Avoidance Behavior in Daily Life: Insights from Vignettes and Ambulatory Assessment Data](https://openalex.org/W7204372171)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit mention of data availability or deposit.
+- **[Evaluating the Role of Social Interactions and Shame in Self-Injurious Behaviors using Ecological Momentary Assessment: Feasibility and Preliminary Evaluation](https://doi.org/10.55913/kcxzpp85)**
+  - Date: 2026-08-30
+  - Source: openalex
+  - Confidence: 0.7
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study using EMA, but no mention of dataset availability or deposit.
+- **[Understanding the Impact of Psychological Interventions for Psychosis in Daily Life: Experience Sampling Methodology as an Adjunct Outcome Measure in Clinical Trials](https://osf.io/65r7y/)**
+  - Date: 2026-08-29
+  - Source: osf_psyarxiv
+  - Confidence: 0.7
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper discusses the use of ESM in clinical trials, but does not describe a reusable dataset or data deposit.
+- **[Immediate effects of body talk on body image in daily life: An experience sampling study](https://osf.io/x6gz3/)**
+  - Date: 2026-08-27
+  - Source: osf_psyarxiv
+  - Confidence: 0.7
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM/EMA methods, but no indication of dataset availability or open data evidence.
+- **[Forecasting next-day urge to drink without craving’s own history: an individualized analysis of responsive EMA in residential alcohol-use-disorder recovery](https://doi.org/10.31234/osf.io/we2ut_v1)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.7
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA work with analysis of a specified dataset, but no evidence of open data or dataset deposit.
+- **[Forecasting next-day urge to drink without craving’s own history: an individualized analysis of responsive EMA in residential alcohol-use-disorder recovery](https://osf.io/we2ut/)**
+  - Date: 2026-08-26
+  - Source: osf_psyarxiv
+  - Confidence: 0.7
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with analysis of a specified dataset, but no evidence of open data or dataset deposit.
+- **[Sleep Intervention for NHS Healthcare Shift Workers: A Pilot Study of Noise-Masking Earbuds (Preprint)](https://doi.org/10.2196/preprints.110727)**
+  - Date: 2026-08-30
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with ESM/EMA methods, but no explicit open data evidence or dataset deposit mentioned.
+- **[Scroll and Snack: Daily Life Exposure to Healthy Food Content on Instagram Boosts Cravings for Healthy Snacks](https://osf.io/anpt3/)**
+  - Date: 2026-08-28
+  - Source: osf_psyarxiv
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA protocol, but no explicit mention of dataset availability or open data.
+- **[Single‐Unit Activity in the Human Medial Temporal Lobe Reflects Reduced Error Monitoring During Mind Wandering](https://doi.org/10.1002/hipo.70125)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title and abstract suggest original human-subject research with repeated measurements, but no explicit mention of data availability or a reusable dataset.
+- **[How Do You Feel After Daily Surveys? Patterns of Parent-Adolescent Connection During Daily Diary Participation](https://doi.org/10.1177/00332941261484882)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with daily diary protocol, but no information about data availability or reusability.
+- **[Identification of suicidal ideation in major depressive disorder: A machine learning approach with multimodal digital features](https://doi.org/10.1371/journal.pdig.0001615)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper describes an ESM/EMA study, but it does not mention the availability of the dataset.
+- **[Configural conditions for suicidal ideation and self-injurious urges: A preregistered out-of-sample validation of two set-theoretic engines](https://doi.org/10.31234/osf.io/32pme_v2)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract mentions ecological momentary assessment (EMA), but it does not describe a reusable dataset or data deposit. The study appears to be an original data collection, but the dataset is not explicitly stated to be open or available for reuse.
+- **[Configural conditions for suicidal ideation and self-injurious urges: A preregistered out-of-sample validation of two set-theoretic engines](https://openalex.org/W7204680454)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract mentions ecological momentary assessment (EMA), but it does not describe a reusable dataset or data deposit. The study appears to be an original empirical study, but the data access status is not stated.
+- **[Configural conditions for suicidal ideation and self-injurious urges: A preregistered out-of-sample validation of two set-theoretic engines](https://osf.io/32pme/)**
+  - Date: 2026-08-27
+  - Source: osf_psyarxiv
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with EMA, but no mention of dataset availability or deposit.
+- **[The bittersweet of colleague support in the relationship between challenge and hindrance appraisals and employee well-being](https://doi.org/10.1007/s12144-026-09961-2)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Daily diary design with 305 day-level observations, but no explicit mention of data availability or reusability.
+- **[Handling the ups and downs of adolescence: The role of emotion regulation repertoires](https://openalex.org/W7112166156)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title and abstract suggest ESM/EMA data collection, but no information about dataset availability or reuse.
+- **[Personalising Cognitive Behavioural Therapy for Chronic Pain using person-specific Network Analysis and Single-Case Experimental Design](https://doi.org/10.26204/kluedo/13433)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper describes original research with EMA, but it does not mention a reusable dataset or data deposit. The focus is on methodological approaches and personalisation of CBT for chronic pain, rather than providing a dataset for reuse.
+- **[Protocol for a Multi-method Investigation of Moderators of Emotion Regulation in Youth](https://doi.org/10.31234/osf.io/h82nq_v1)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract describes a planned project with multiple methods, including ecological momentary assessment, but does not mention data availability or deposit.
+- **[Do Period Apps Help? The Interplay Between Menstrual Discomfort, Self-Control, and Procrastination Behavior at Work in a Daily Diary Study](https://openalex.org/W7204512145)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Daily diary study with a specific research question, but no explicit mention of data availability or reusability.
+- **[Scroll and Snack: Daily Life Exposure to Healthy Food Content on Instagram Boosts Cravings for Healthy Snacks](https://openalex.org/W7111805161)**
+  - Date: 2026-08-25
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title and abstract suggest ESM/EMA use, but no information about dataset availability or reuse.
+- **[Protocol for a Multi-method Investigation of Moderators of Emotion Regulation in Youth](https://osf.io/h82nq/)**
+  - Date: 2026-08-25
+  - Source: osf_psyarxiv
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper describes a planned project with multiple data collection methods, but it does not mention data availability or deposit.
+- **[EHR perception and momentary well-being in oncology professionals](https://doi.org/10.1016/j.esmorw.2026.100754)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no clear indication of a reusable dataset or open data.
+- **[Brain network and oscillation dynamics mirror the inward and outward orientation of spontaneous thought](https://doi.org/10.1038/s41598-026-67013-y)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: uses Descriptive Experience Sampling (DES) but does not describe a reusable dataset
+- **[Interoception and fatigue in long COVID: Exploring the role of internal bodily signal sensibility, accuracy, and awareness in persistent symptoms](https://doi.org/10.17605/osf.io/axyqe)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The study involves repeated measurements in daily life, but there is no mention of a reusable dataset or data deposit.
+- **[Affect and pleasure in social contexts among patients with schizophrenia and negative symptoms: An ecological momentary assessment study](https://doi.org/10.1016/j.schres.2026.08.027)**
+  - Date: 2026-08-29
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title mentions ecological momentary assessment, but no abstract is available and no evidence of dataset availability is provided.
+- **[Adolescents’ appearance-related social media consciousness and photo-related behaviors are linked to social anxiety symptoms with peers digitally and in-person: An ecological momentary assessment study.](https://doi.org/10.1037/ppm0000696)**
+  - Date: 2026-08-27
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title suggests ESM relevance, but no abstract available to confirm dataset reuse or data access.
+- **[Inhibitory Control and Value-Based Decision-Making in Cannabis Use: A Multi-Method Investigation using functional Near-Infrared Spectroscopy and Ecological Momentary Assessment](https://doi.org/10.17638/03199003)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title mentions EMA, but no abstract available and no evidence of open data or dataset deposit.
+- **[Emotions about Climate Occurrences in Elections (ECO-ELECT) Daily Diary](https://openalex.org/W7204619248)**
+  - Date: 2026-08-26
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title suggests ESM/EMA, but no abstract available and no evidence of dataset reuse or open data.
+- **[Supplemental Material for Adolescents’ Appearance-Related Social Media Consciousness and Photo-Related Behaviors Are Linked to Social Anxiety Symptoms With Peers Digitally and In-Person: An Ecological Momentary Assessment Study](https://doi.org/10.1037/ppm0000696.supp)**
+  - Date: 2026-08-24
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title mentions EMA, but no abstract is available and no evidence of open data is provided.
+
+## Relevant, restricted or unclear access
+
+None.
+
+## Excluded records
+
+Excluded records: 74. They remain in the triage CSV for audit and prompt review.
+## API and parsing errors
+
+None.
+
