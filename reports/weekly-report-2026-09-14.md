@@ -1,0 +1,636 @@
+# Weekly ESM discovery report
+
+Generated: 2026-09-14 15:31:48 UTC
+Input: `output/triage_v3.csv`
+
+## Summary
+
+- Records fetched for triage: 129
+- Successful classifications: 129
+- Relevant ESM/EMA candidates: 64
+- Excluded as irrelevant: 65
+- API or parse errors: 0
+
+Source counts:
+
+| Source | Records |
+| --- | ---: |
+| openalex | 129 |
+
+## High-priority candidates
+
+- **[A Panel Framework for Large-Scale Multimodal Digital Phenotyping of Depression in a Real-World Cohort](https://doi.org/10.17632/kzh7pbdvxm)**
+  - Date: 2026-09-12
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: explicit open data evidence in the metadata, including a repository with code, derived analysis datasets, and result files
+- **[Self-Care Practices and Stressful Events: Pilot Ecological Momentary Assessment Dataset](https://doi.org/10.5281/zenodo.22707891)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo identifier 10.5281/zenodo.22707891 and mention of accompanying files with a codebook.
+- **[Self-Care Practices and Stressful Events: Pilot Ecological Momentary Assessment Dataset](https://doi.org/10.5281/zenodo.22707892)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo identifier 10.5281/zenodo.22707892 and mention of accompanying files with a codebook.
+- **[Anonymized Diary Data and Codebook for “Daily Materialistic Goal Activation and Well-Being”](https://doi.org/10.6084/m9.figshare.33588358)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence in the metadata, with a deposited dataset and codebook available for download.
+- **[Anonymized Diary Data and Codebook for “Daily Materialistic Goal Activation and Well-Being”](https://doi.org/10.6084/m9.figshare.33588358.v1)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence in the metadata, with a deposited dataset and codebook available from figshare.
+- **[jwsong0620/260901_DriftAE: Code and datasets for EMA-based drift compensation](https://doi.org/10.5281/zenodo.22689470)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo repository identifier 10.5281/zenodo.22689470
+- **[Maddiejones/ema-questionnaire: EMA-assessment-code](https://doi.org/10.5281/zenodo.22672343)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo identifier 10.5281/zenodo.22672343
+- **[Maddiejones/ema-questionnaire: EMA-assessment-code](https://doi.org/10.5281/zenodo.22672344)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo identifier 10.5281/zenodo.22672344
+- **[Survey materials](https://doi.org/10.17605/osf.io/7p254)**
+  - Date: 2026-09-08
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: explicit open data evidence in the abstract, including data and analysis scripts
+- **[A Panel Framework for Large-Scale Multimodal Digital Phenotyping of Depression in a Real-World Cohort](https://doi.org/10.17632/kzh7pbdvxm.1)**
+  - Date: 2026-09-12
+  - Source: openalex
+  - Confidence: 0.9
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: The metadata explicitly states that the code, derived analysis datasets, and result files are uploaded, which is evidence of open data.
+- **[[Data Note] Mood in the Moment, an Ecological Momentary Assessment of Depression and Mental Health within the Twins Early Development Study (TEDS)](https://doi.org/10.12688/wellcomeopenres.27585.1)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.9
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Original ESM/EMA dataset with explicit open data evidence and high relevance to human behavior.
+
+## Medium-priority candidates
+
+- **[If you try hard but still fail to help, regulating others’ emotions will take an emotional toll](https://doi.org/10.31234/osf.io/stvju_v1)**
+  - Date: 2026-09-14
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit information about data availability.
+- **[Affect Dynamics or Response Bias? Extreme Response Style in Daily-Life Assessments](https://doi.org/10.1080/00273171.2026.2721527)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit evidence of open data or dataset deposit.
+- **[Effects of a situational interest-based rotational fitness training program on positive affect in university students](https://doi.org/10.1097/md.0000000000050663)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit open data evidence.
+- **[Adherence and Acceptability of Smartphone- and Wearable-Based Digital Phenotyping in Patients With First-Episode Psychosis: Observance et acceptabilité du phénotypage numérique fondé sur les téléphones intelligents et les objets personnels connectés chez les patients présentant un premier épisode de psychose](https://doi.org/10.1177/07067437261486958)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit open data evidence or dataset deposit mentioned.
+- **[Workload-risk-aware hybrid scheduling of university counselor daily tasks: non-participant supporting data](https://doi.org/10.6084/m9.figshare.33582406)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original data collection with a specified dataset, but access to de-identified extracts is handled by an ethics committee, and the dataset is not explicitly open or restricted.
+- **[Multi-mode design for studying cyber aggression in texts, Facebook and Twitter messages among middle school youth](https://doi.org/10.1093/aje/kwag222)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: uses EMA, collects repeated measurements in daily life, and describes a dataset, but does not explicitly state data access
+- **[More positive and more active: Effects of daily intergenerational engagement on emotion and physical activity](https://doi.org/10.1093/geronb/gbag191)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit mention of data availability.
+- **[Continuing cannabis use after initiation: The role of social context, craving and problem severity during acute cannabis use episodes](https://doi.org/10.1111/add.70593)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit open data evidence, but the study's design and methods suggest a potentially reusable dataset.
+- **[The Role of Adverse Childhood Experiences in the Prospective Link between Sleep–Affect Spillover and Anxiety Symptoms: A Daily Diary Study Combined with Panel Data](https://doi.org/10.31234/osf.io/6vkrc_v1)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original human-subject research with daily diary study, but no explicit open data evidence.
+- **[Daily academic and sport-related strain and mental-health-related states among university students in sport-related majors: a 14-day ecological momentary assessment network study](https://doi.org/10.3389/fpsyg.2026.1889946)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit open data evidence.
+
+## Explicit open-data evidence
+
+- **[A Panel Framework for Large-Scale Multimodal Digital Phenotyping of Depression in a Real-World Cohort](https://doi.org/10.17632/kzh7pbdvxm)**
+  - Date: 2026-09-12
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: explicit open data evidence in the metadata, including a repository with code, derived analysis datasets, and result files
+- **[Self-Care Practices and Stressful Events: Pilot Ecological Momentary Assessment Dataset](https://doi.org/10.5281/zenodo.22707891)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo identifier 10.5281/zenodo.22707891 and mention of accompanying files with a codebook.
+- **[Self-Care Practices and Stressful Events: Pilot Ecological Momentary Assessment Dataset](https://doi.org/10.5281/zenodo.22707892)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo identifier 10.5281/zenodo.22707892 and mention of accompanying files with a codebook.
+- **[Anonymized Diary Data and Codebook for “Daily Materialistic Goal Activation and Well-Being”](https://doi.org/10.6084/m9.figshare.33588358)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence in the metadata, with a deposited dataset and codebook available for download.
+- **[Anonymized Diary Data and Codebook for “Daily Materialistic Goal Activation and Well-Being”](https://doi.org/10.6084/m9.figshare.33588358.v1)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence in the metadata, with a deposited dataset and codebook available from figshare.
+- **[jwsong0620/260901_DriftAE: Code and datasets for EMA-based drift compensation](https://doi.org/10.5281/zenodo.22689470)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo repository identifier 10.5281/zenodo.22689470
+- **[Maddiejones/ema-questionnaire: EMA-assessment-code](https://doi.org/10.5281/zenodo.22672343)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo identifier 10.5281/zenodo.22672343
+- **[Maddiejones/ema-questionnaire: EMA-assessment-code](https://doi.org/10.5281/zenodo.22672344)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Explicit open data evidence from Zenodo identifier 10.5281/zenodo.22672344
+- **[Survey materials](https://doi.org/10.17605/osf.io/7p254)**
+  - Date: 2026-09-08
+  - Source: openalex
+  - Confidence: 1
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: explicit open data evidence in the abstract, including data and analysis scripts
+- **[A Panel Framework for Large-Scale Multimodal Digital Phenotyping of Depression in a Real-World Cohort](https://doi.org/10.17632/kzh7pbdvxm.1)**
+  - Date: 2026-09-12
+  - Source: openalex
+  - Confidence: 0.9
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: The metadata explicitly states that the code, derived analysis datasets, and result files are uploaded, which is evidence of open data.
+- **[[Data Note] Mood in the Moment, an Ecological Momentary Assessment of Depression and Mental Health within the Twins Early Development Study (TEDS)](https://doi.org/10.12688/wellcomeopenres.27585.1)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.9
+  - Dataset candidate: TRUE
+  - Data status: explicit_open
+  - Reason: Original ESM/EMA dataset with explicit open data evidence and high relevance to human behavior.
+
+## Relevant, access not stated
+
+- **[If you try hard but still fail to help, regulating others’ emotions will take an emotional toll](https://doi.org/10.31234/osf.io/stvju_v1)**
+  - Date: 2026-09-14
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit information about data availability.
+- **[Affect Dynamics or Response Bias? Extreme Response Style in Daily-Life Assessments](https://doi.org/10.1080/00273171.2026.2721527)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit evidence of open data or dataset deposit.
+- **[Effects of a situational interest-based rotational fitness training program on positive affect in university students](https://doi.org/10.1097/md.0000000000050663)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit open data evidence.
+- **[Adherence and Acceptability of Smartphone- and Wearable-Based Digital Phenotyping in Patients With First-Episode Psychosis: Observance et acceptabilité du phénotypage numérique fondé sur les téléphones intelligents et les objets personnels connectés chez les patients présentant un premier épisode de psychose](https://doi.org/10.1177/07067437261486958)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit open data evidence or dataset deposit mentioned.
+- **[Workload-risk-aware hybrid scheduling of university counselor daily tasks: non-participant supporting data](https://doi.org/10.6084/m9.figshare.33582406)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original data collection with a specified dataset, but access to de-identified extracts is handled by an ethics committee, and the dataset is not explicitly open or restricted.
+- **[Multi-mode design for studying cyber aggression in texts, Facebook and Twitter messages among middle school youth](https://doi.org/10.1093/aje/kwag222)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: uses EMA, collects repeated measurements in daily life, and describes a dataset, but does not explicitly state data access
+- **[More positive and more active: Effects of daily intergenerational engagement on emotion and physical activity](https://doi.org/10.1093/geronb/gbag191)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit mention of data availability.
+- **[Continuing cannabis use after initiation: The role of social context, craving and problem severity during acute cannabis use episodes](https://doi.org/10.1111/add.70593)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit open data evidence, but the study's design and methods suggest a potentially reusable dataset.
+- **[The Role of Adverse Childhood Experiences in the Prospective Link between Sleep–Affect Spillover and Anxiety Symptoms: A Daily Diary Study Combined with Panel Data](https://doi.org/10.31234/osf.io/6vkrc_v1)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: not_stated
+  - Reason: Original human-subject research with daily diary study, but no explicit open data evidence.
+- **[Daily academic and sport-related strain and mental-health-related states among university students in sport-related majors: a 14-day ecological momentary assessment network study](https://doi.org/10.3389/fpsyg.2026.1889946)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit open data evidence.
+- **[Context Sensitivity Underlies Emotional Intelligence and Flexible Emotion Regulation in Daily Life](https://doi.org/10.31234/osf.io/e9acy_v1)**
+  - Date: 2026-09-14
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit evidence of open data or dataset deposit.
+- **[Within-person associations between fear of missing out and cyberbullying victimization: An ecological momentary assessment study](https://doi.org/10.1016/j.paid.2026.114079)**
+  - Date: 2026-09-12
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study, but no information about dataset availability or reuse.
+- **[Predicting Active Suicidality from Temporal Dynamics of Implicit Life-Death Associations](https://doi.org/10.64898/2026.09.09.26362642)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no explicit mention of dataset availability or open data.
+- **[Correspondence in emotionality between spoken words and ecological momentary assessment in individuals varying in depression and anhedonia](https://doi.org/10.1016/j.jadr.2026.101163)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no evidence of a reusable dataset or open data.
+- **[Daily Reasons for Living in Adolescent Suicidal Ideation: The Effects of Maladaptive Personality Traits](https://doi.org/10.17605/osf.io/nkreq)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The study uses a daily diary design to examine the association between daily importance of Reasons for Living and suicidal ideation in adolescents and young adults, but there is no mention of data availability or deposit.
+- **[Emotion Regulation in Response to Stress in the Daily Lives of Women With and Without Eating Disorders: An Ecological Momentary Assessment Study](https://doi.org/10.1002/eat.70207)**
+  - Date: 2026-09-13
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no explicit open data evidence and no dataset description.
+- **[Parsing the Longitudinal Relationship Between Avoidant Automatic Thoughts and Avoidance](https://doi.org/10.1177/10870547261487760)**
+  - Date: 2026-09-12
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study with no explicit open data evidence, dataset deposit, or reuse information.
+- **[Using Mobile Technology to Study Episodes of Alcohol Self-Administration in Daily Life: A Narrative Review](https://doi.org/10.1007/s40429-026-00790-8)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Review article with no explicit mention of a reusable dataset
+- **[Beyond Top-Down Effects: Reciprocal Associations Between Daily Subjective Well-Being and Personality States](https://doi.org/10.1177/08902070261484232)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with EMA design, but no evidence of open data or dataset deposit.
+- **[Mind the Gap: Interpersonal Complementarity and Goal-Behaviour Matching in Daily Life](https://doi.org/10.1177/08902070261485378)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original EMA study, but no explicit evidence of open data or dataset deposit
+- **[Addiction as the Loss of Future Reachability](https://doi.org/10.5281/zenodo.22709669)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Abstract mentions ecological momentary assessment protocol, but no explicit open data evidence or dataset description.
+- **[Addiction as the Loss of Future Reachability](https://doi.org/10.5281/zenodo.22709670)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Abstract mentions ecological momentary assessment protocol, but does not explicitly state data availability or open data evidence.
+- **[Addiction as the Loss of Future Reachability](https://doi.org/10.5281/zenodo.22713925)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract mentions an ecological momentary assessment protocol, but it is unclear if the dataset is available or if the study is based on original data collection.
+- **[Alexithymia and paradoxical regulatory success in posttraumatic stress: An ecological momentary assessment study.](https://doi.org/10.1037/emo0001748)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no evidence of open data or dataset deposit.
+- **[Herausforderungen in der Versorgung der Altersschwerhörigkeit in Deutschland: HearForFuture](https://doi.org/10.1055/a-2941-1033)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract mentions ecological momentary assessment, but it does not describe a reusable dataset or data deposit. The study's focus is on developing a care concept for age-related hearing loss, rather than collecting data for reuse.
+- **[Stress mindset, perceived stress, and the association with cognitive function using ecological momentary assessment](https://doi.org/10.1080/10615806.2026.2730063)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with ESM/EMA methods, but no explicit evidence of a reusable dataset or open data.
+- **[Effectiveness and mechanisms of internet-delivered transdiagnostic CBT for students with adjustment disorder: the role of cognitive inflexibility, self-compassion, and mindfulness](https://doi.org/10.1080/16506073.2026.2720139)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Daily diary assessments captured changes in self-compassion, mindfulness and psychological flexibility, but no information is provided about data availability or reusability.
+- **[Intensive longitudinal assessment of stress and stress-related concepts across a weight loss program: Protocol for a longitudinal ecological momentary assessment study](https://doi.org/10.1371/journal.pone.0357572)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no evidence of dataset availability or open data.
+- **[Generative AI Involvement in Academic Tasks and University Students’ Psychological Ownership and State Impostor Feelings: An EMA and Experimental Study](https://doi.org/10.17605/osf.io/vncj6)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: EMA study with no clear indication of dataset availability or reuse
+- **[The Dynamic Nature of Emotions in Second Language Learning](https://doi.org/10.5463/thesis.1869)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no explicit open data evidence or dataset deposit mentioned.
+- **[EMA core item set](https://openalex.org/W7212460022)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Abstract describes ESM/EMA concept and a project to establish a core item set, but does not mention a reusable dataset or data deposit.
+- **[Perceived self-control mediates momentary mindfulness and affective states in daily life: a dynamic structural equation modeling approach](https://doi.org/10.1007/s11031-026-10280-z)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit evidence of open data or dataset deposit.
+- **[Mood and Media: Leveraging Passive Sensing and EMA to Assess Daily, Bidirectional Associations of Different Smartphone-Based Media Use and Depressed Mood in Adolescents](https://doi.org/10.1007/s41347-026-00711-6)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements in daily life, but no explicit evidence of open data or dataset deposit.
+- **[On-screen ideals and off-screen ordeals: a daily diary study of the bidirectional links between short-video media use and eating disorder symptoms in college students](https://doi.org/10.1080/10640266.2026.2731469)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with daily diary study design, but no explicit mention of data availability or reusability.
+- **[Sex-Moderated and Sex-Specific Effects of Adverse Childhood Experiences on Neural Alcohol Cue Reactivity and Daily Craving in Individuals With Alcohol Use Disorder](https://doi.org/10.1176/appi.ajp.20251163)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract describes an EMA study, but there is no mention of data availability or a dataset deposit.
+- **[Second-Order Geometry Helps Clarify Relationships between Momentary Emotion Regulation Use and Affect](https://doi.org/10.31234/osf.io/cg3d2_v1)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original empirical study with EMA data, but no explicit open data evidence or mention of dataset deposit.
+- **[iOS Shortcuts as a Free, No-Code Tool for Event-Triggered Experience Sampling](https://doi.org/10.31234/osf.io/de5ra_v1)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper discusses a method for event-triggered experience sampling using iOS Shortcuts, but it does not describe a reusable dataset or original data collection.
+- **[iOS Shortcuts as a Free, No-Code Tool for Event-Triggered Experience Sampling](https://openalex.org/W7212463024)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper discusses a method for event-triggered experience sampling using iOS Shortcuts, but it does not describe a reusable dataset or original data collection.
+- **[Second-Order Geometry Helps Clarify Relationships between Momentary Emotion Regulation Use and Affect](https://openalex.org/W7212464765)**
+  - Date: 2026-09-09
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original ESM/EMA work with no explicit open data evidence and unclear data access status.
+- **[Forecasting alcohol lapse risk up to two weeks in advance using time-lagged machine learning models](https://doi.org/10.1371/journal.pone.0356893)**
+  - Date: 2026-09-08
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no clear indication of dataset reuse or open data.
+- **[A Smartphone-Based Ecological Momentary Intervention for Workplace Mental Health: Randomized Controlled Trial](https://doi.org/10.2196/72435)**
+  - Date: 2026-09-08
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with EMA, but no explicit open data evidence and no dataset description.
+- **[Preregistration update: Solitude as Short-Term Regulation: An Allostatic View of Withdrawal in Times of Distress](https://doi.org/10.5281/zenodo.22662146)**
+  - Date: 2026-09-08
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract mentions ecological momentary assessment studies, but the metadata does not provide evidence of a reusable dataset or open data.
+- **[Preregistration update: Solitude as Short-Term Regulation: An Allostatic View of Withdrawal in Times of Distress](https://doi.org/10.5281/zenodo.22662147)**
+  - Date: 2026-09-08
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract mentions ecological momentary assessment studies, but it does not describe a reusable dataset or provide evidence of open data.
+- **[Pure prosociality? A daily diary study of moral foundations and prosocial giving intentions with a yearly follow-up](https://openalex.org/W7159899583)**
+  - Date: 2026-09-08
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with repeated measurements, but no explicit evidence of open data or dataset deposit.
+- **[Can physical activity disrupt persistent anxiety networks? Extending experience sampling models beyond symptoms](https://doi.org/10.1016/j.jadr.2026.101167)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Original human-subject research with ESM/EMA relevance, but no evidence of a reusable dataset or open data.
+- **[Does patient death and suffering deplete or energize ICU healthcare professionals? Daily interaction of harmonious and obsessive passion](https://doi.org/10.1080/07481187.2026.2726888)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.6
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Daily diary study with repeated measurements in daily life, but no explicit mention of data availability or reusability.
+- **[End of average. understanding overweight and obesity: rationale, protocol and design of a cross-sectional and randomized controlled trial investigating predictors of effectiveness of a lifestyle intervention in adults with overweight and obesity](https://doi.org/10.1186/s13063-026-09983-y)**
+  - Date: 2026-09-12
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract mentions ecological momentary assessment (EMA) but does not describe a reusable dataset or data deposit. The study's focus is on the investigation of predictors of effectiveness of a lifestyle intervention, rather than the collection or analysis of a specified dataset.
+- **[Temporal Associations Between Nightmares and PTSD Symptoms in the Acute Post-Sexual Assault Period: An Ecological Momentary Assessment Study](https://doi.org/10.17615/8bsp-2z68)**
+  - Date: 2026-09-11
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: Title mentions ecological momentary assessment, but no abstract is available and no evidence of open data or dataset deposit is present.
+- **[NSSI as Inward-Routed Mobilization: Over-Idealized Figures and State Transition](https://doi.org/10.20944/preprints202602.1636.v3)**
+  - Date: 2026-09-10
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The abstract mentions ecological momentary assessment, but the paper is a theoretical model and does not describe a reusable dataset.
+- **[Considering Context: Emotion‑Regulation Diversity during Emotion‑Eliciting Tasks in Bipolar and Depressive Mood Disorders](https://doi.org/10.17605/osf.io/fhbzm)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.5
+  - Dataset candidate: FALSE
+  - Data status: not_stated
+  - Reason: The paper discusses a study on emotion regulation diversity in mood disorders, but there is no mention of a reusable dataset or data deposit.
+
+## Relevant, restricted or unclear access
+
+- **[8iancachagasribeiro/_signal_pipeline-: BRM Reproducibility Package v1.0.1](https://doi.org/10.5281/zenodo.21446736)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: explicit_restricted
+  - Reason: dataset_candidate=true, but raw mcPHASES participant data are not redistributed due to PhysioNet access restrictions
+- **[8iancachagasribeiro/_signal_pipeline-: BRM Reproducibility Package v1.0.2](https://doi.org/10.5281/zenodo.22650392)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.8
+  - Dataset candidate: TRUE
+  - Data status: explicit_restricted
+  - Reason: dataset_candidate=true, but data access is restricted due to credentialed PhysioNet access
+- **[8iancachagasribeiro/_signal_pipeline-: BRM Reproducibility Package v1.0.2](https://doi.org/10.5281/zenodo.22650422)**
+  - Date: 2026-09-07
+  - Source: openalex
+  - Confidence: 0.7
+  - Dataset candidate: TRUE
+  - Data status: explicit_restricted
+  - Reason: dataset is not fully open due to credentialed PhysioNet access
+
+## Excluded records
+
+Excluded records: 65. They remain in the triage CSV for audit and prompt review.
+## API and parsing errors
+
+None.
+
