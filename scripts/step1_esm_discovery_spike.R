@@ -435,9 +435,13 @@ fetch_osf_preprints <- function(start_date, end_date) {
         date_created <- safe_chr(purrr::pluck(attrs, "date_created", .default = NA_character_))
         chosen_date <- ifelse(!is.na(date_published), date_published, date_created)
 
+        # attributes.doi is null for psyarxiv; the preprint doi lives in links.preprint_doi.
+        preprint_doi <- safe_chr(purrr::pluck(item, "links", "preprint_doi", .default = NA_character_))
+        data_links <- unlist(purrr::pluck(attrs, "data_links", .default = list()))
+
         data.frame(
-          doi_raw = safe_chr(purrr::pluck(attrs, "doi", .default = NA_character_)),
-          doi = normalize_doi(safe_chr(purrr::pluck(attrs, "doi", .default = NA_character_))),
+          doi_raw = preprint_doi,
+          doi = normalize_doi(preprint_doi),
           source = "osf_psyarxiv",
           date = to_date_only(chosen_date),
           title = title,
@@ -446,6 +450,8 @@ fetch_osf_preprints <- function(start_date, end_date) {
           linked_project_available = linked_project_available,
           raw_id = safe_chr(purrr::pluck(item, "id", .default = NA_character_)),
           matched_query_term = NA_character_,
+          osf_has_data_links = safe_chr(purrr::pluck(attrs, "has_data_links", .default = NA_character_)),
+          osf_data_links = collapse_or_na(as.character(data_links)),
           stringsAsFactors = FALSE
         )
       })
@@ -460,12 +466,7 @@ fetch_osf_preprints <- function(start_date, end_date) {
     }
 
     if (length(local_rows) == 0) {
-      return(data.frame(
-        doi_raw = character(), doi = character(), source = character(), date = character(),
-        title = character(), abstract_text = character(), abstract_available = logical(),
-        linked_project_available = logical(), raw_id = character(), matched_query_term = character(),
-        stringsAsFactors = FALSE
-      ))
+      return(empty_osf_rows())
     }
 
     bind_rows(local_rows)
@@ -481,6 +482,7 @@ fetch_osf_preprints <- function(start_date, end_date) {
       doi_raw = character(), doi = character(), source = character(), date = character(),
       title = character(), abstract_text = character(), abstract_available = logical(),
       linked_project_available = logical(), raw_id = character(), matched_query_term = character(),
+      osf_has_data_links = character(), osf_data_links = character(),
       stringsAsFactors = FALSE
     )
   }
@@ -657,8 +659,10 @@ without_doi <- combined_raw |>
 
 deduped_with_doi <- if (nrow(with_doi) > 0) {
   with_doi |>
-    group_by(doi) |>
+    # psyarxiv versions (_v1, _v2) of one preprint can differ between openalex and osf.
+    group_by(dedupe_key = str_remove(doi, "_v[0-9]+$")) |>
     summarise(
+      doi = first(doi),
       doi_raw = first(doi_raw),
       source = paste(sort(unique(source)), collapse = "+"),
       date = suppressWarnings(max(date, na.rm = TRUE)),
@@ -668,8 +672,11 @@ deduped_with_doi <- if (nrow(with_doi) > 0) {
       linked_project_available = any(linked_project_available, na.rm = TRUE),
       raw_id = first(raw_id),
       matched_query_term = collapse_or_na(matched_query_term),
+      osf_has_data_links = first(osf_has_data_links[!is.na(osf_has_data_links)]),
+      osf_data_links = collapse_or_na(osf_data_links),
       .groups = "drop"
-    )
+    ) |>
+    select(-dedupe_key)
 } else {
   with_doi
 }

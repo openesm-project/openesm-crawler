@@ -28,6 +28,10 @@ missing_columns <- setdiff(required_columns, names(triage))
 if (length(missing_columns) > 0) {
   stop(sprintf("Triage CSV is missing columns: %s", paste(missing_columns, collapse = ", ")))
 }
+# older discovery csvs predate the osf data-link columns.
+for (column in c("osf_data_links", "triage_model", "triage_prompt_version")) {
+  if (!column %in% names(triage)) triage[[column]] <- NA_character_
+}
 
 safe_text <- function(value, fallback = "") {
   if (length(value) == 0 || is.na(value[[1]])) {
@@ -57,32 +61,43 @@ record_link <- function(row) {
   ""
 }
 
-priority_order <- c(high = 1L, medium = 2L, low = 3L)
+is_true <- function(x) x %in% c(TRUE, "TRUE", "true")
+
+# split declared osf data links into public links and view-only (review) links.
+split_links <- function(links, view_only) {
+  vapply(links, function(value) {
+    if (is.na(value)) return(NA_character_)
+    parts <- str_split(value, ";")[[1]]
+    parts <- parts[str_detect(parts, "view_only") == view_only]
+    if (length(parts) == 0) NA_character_ else paste(parts, collapse = " ")
+  }, character(1), USE.NAMES = FALSE)
+}
+
 successful <- triage |>
   filter(triage_status == "ok") |>
   mutate(
-    priority_rank = unname(priority_order[as.character(priority)]),
-    confidence = suppressWarnings(as.numeric(confidence))
+    confidence = suppressWarnings(as.numeric(confidence)),
+    osf_public_links = split_links(osf_data_links, view_only = FALSE),
+    osf_view_only_links = split_links(osf_data_links, view_only = TRUE),
+    llm_open = data_access_status == "explicit_open" & is_true(dataset_candidate) & is_true(empirical_study)
   ) |>
-  arrange(priority_rank, desc(confidence), desc(date))
+  arrange(desc(confidence), desc(date))
 
 relevant <- successful |>
-  filter(relevant_esm %in% c(TRUE, "TRUE", "true"))
+  filter(is_true(relevant_esm))
 
-high_priority <- relevant |>
-  filter(priority == "high")
-medium_priority <- relevant |>
-  filter(priority == "medium")
-explicit_open <- relevant |>
-  filter(data_access_status == "explicit_open")
-not_stated <- relevant |>
-  filter(data_access_status == "not_stated")
-restricted_or_unclear <- relevant |>
-  filter(data_access_status %in% c("explicit_restricted", "unclear"))
+# a record is listed in the first section it qualifies for, so it appears at most once.
+open_candidates <- relevant |>
+  filter(!is.na(osf_public_links) | llm_open)
+view_only_candidates <- relevant |>
+  filter(is.na(osf_public_links), !llm_open, !is.na(osf_view_only_links))
+no_evidence <- relevant |>
+  filter(is.na(osf_public_links), !llm_open, is.na(osf_view_only_links))
 errors <- triage |>
   filter(triage_status != "ok")
 excluded <- successful |>
-  filter(!(relevant_esm %in% c(TRUE, "TRUE", "true")))
+  filter(!is_true(relevant_esm))
+models_used <- paste(sort(unique(na.omit(paste(triage$triage_model, triage$triage_prompt_version)))), collapse = ", ")
 
 source_counts <- triage |>
   count(source, name = "records") |>
@@ -92,13 +107,16 @@ render_candidate <- function(row) {
   link <- record_link(row)
   title <- markdown_text(row[["title"]], "Untitled candidate")
   title_line <- if (link == "") title else paste0("[", title, "](", link, ")")
+  evidence <- c(
+    if (!is.na(row[["osf_public_links"]])) paste0("OSF data link: ", row[["osf_public_links"]]),
+    if (!is.na(row[["osf_view_only_links"]])) paste0("OSF view-only link (review access, may not be public): ", row[["osf_view_only_links"]]),
+    if (isTRUE(row[["llm_open"]])) "LLM: explicit open data in abstract"
+  )
   paste0(
     "- **", title_line, "**\n",
-    "  - Date: ", markdown_text(row[["date"]], "Unknown"), "\n",
-    "  - Source: ", markdown_text(row[["source"]], "Unknown"), "\n",
-    "  - Confidence: ", markdown_text(row[["confidence"]], "Unknown"), "\n",
-    "  - Dataset candidate: ", markdown_text(row[["dataset_candidate"]], "Unknown"), "\n",
-    "  - Data status: ", markdown_text(row[["data_access_status"]], "Unknown"), "\n",
+    "  - Date: ", markdown_text(row[["date"]], "Unknown"), " | Source: ", markdown_text(row[["source"]], "Unknown"),
+    " | Confidence: ", markdown_text(row[["confidence"]], "Unknown"), "\n",
+    "  - Evidence: ", markdown_text(paste(evidence, collapse = "; "), "None"), "\n",
     "  - Reason: ", markdown_text(row[["reason"]])
   )
 }
@@ -116,12 +134,16 @@ lines <- c(
   "",
   paste0("Generated: ", format(Sys.time(), "%Y-%m-%d %H:%M:%S %Z")),
   paste0("Input: `", TRIAGE_OUTPUT_CSV, "`"),
+  paste0("Model: ", if (models_used == "") "Unknown" else models_used),
   "",
   "## Summary",
   "",
   paste0("- Records fetched for triage: ", nrow(triage)),
   paste0("- Successful classifications: ", nrow(successful)),
   paste0("- Relevant ESM/EMA candidates: ", nrow(relevant)),
+  paste0("  - with open-data evidence (listed below): ", nrow(open_candidates)),
+  paste0("  - with an OSF view-only data link only (listed below): ", nrow(view_only_candidates)),
+  paste0("  - without open-data evidence (not listed): ", nrow(no_evidence)),
   paste0("- Excluded as irrelevant: ", nrow(excluded)),
   paste0("- API or parse errors: ", nrow(errors)),
   "",
@@ -133,11 +155,8 @@ lines <- c(
   ""
 )
 
-lines <- render_section(lines, "High-priority candidates", high_priority)
-lines <- render_section(lines, "Medium-priority candidates", medium_priority)
-lines <- render_section(lines, "Explicit open-data evidence", explicit_open)
-lines <- render_section(lines, "Relevant, access not stated", not_stated)
-lines <- render_section(lines, "Relevant, restricted or unclear access", restricted_or_unclear)
+lines <- render_section(lines, "Open-data candidates", open_candidates)
+lines <- render_section(lines, "Declared data, OSF view-only link", view_only_candidates)
 
 lines <- c(lines, "## Excluded records", "")
 if (nrow(excluded) == 0) {
