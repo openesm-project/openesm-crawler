@@ -45,7 +45,7 @@ $env:CANDIDATE_CSV="output/candidates.csv"
 Rscript scripts/step1_esm_discovery_spike.R
 ```
 
-The discovery script prints diagnostics and writes the full filtered candidate object, including title, abstract, DOI/source identifiers, and matching fields.
+The discovery script prints diagnostics and writes the full filtered candidate object, including title, abstract, DOI/source identifiers, and matching fields. OpenAlex is searched with quoted phrases; software, review, editorial, and similar record types are dropped; matches on "EMA" alone also need a daily-life context word (e.g., momentary, smartphone, diary). Records are merged by DOI (ignoring PsyArXiv `_vN` versions) and then by title, with all merged DOIs kept in `all_dois`.
 
 ## Triage
 
@@ -72,7 +72,7 @@ $env:REPORT_OUTPUT_MD="reports/weekly_report.md"
 Rscript scripts/weekly_report.R
 ```
 
-The report separates relevant candidates, explicit open-data evidence, unstated access, restricted/unclear access, exclusions, and API errors. The triage CSV is not uploaded by the automated workflow.
+The report lists each relevant candidate at most once and only when there is open-data evidence: a public data link declared on the OSF preprint, or an explicit open-data statement found by the LLM. Candidates with only an OSF view-only (review) link are listed separately; relevant candidates without evidence, exclusions, and API errors are counted. The report header names the model used. The triage CSV is not uploaded by the automated workflow.
 
 ## Repository layout
 

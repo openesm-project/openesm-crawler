@@ -25,7 +25,7 @@ MAX_RETRIES <- 5L
 BACKOFF_BASE_SECONDS <- 1
 BACKOFF_MAX_SECONDS <- 60
 RETRY_STATUS_CODES <- c(408L, 429L, 500L, 502L, 503L, 504L)
-TRIAGE_PROMPT_VERSION <- "v3"
+TRIAGE_PROMPT_VERSION <- "v4"
 
 if (LLM_API_KEY == "") {
   stop("Set LLM_API_KEY before running the triage script.")
@@ -122,6 +122,8 @@ get_retry_after_seconds <- function(response) {
 }
 
 request_with_retries <- function(request_object) {
+  # httr2 errors on 4xx/5xx by default, which would skip the status and retry-after handling below.
+  request_object <- req_error(request_object, is_error = function(response) FALSE)
   for (attempt in seq_len(MAX_RETRIES)) {
     response <- tryCatch(req_perform(request_object), error = function(error) error)
 
@@ -157,7 +159,8 @@ request_with_retries <- function(request_object) {
   stop("Retry loop exhausted without returning or throwing.")
 }
 
-build_prompt <- function(title, abstract, source, date, identifier) {
+# doi and source are deliberately not sent: models read "hosted on osf/zenodo" as open-data evidence.
+build_prompt <- function(title, abstract, date) {
   abstract_text <- if (abstract == "") "[No abstract available; use title only and mark uncertain judgments accordingly.]" else abstract
   if (nchar(abstract_text) > LLM_MAX_ABSTRACT_CHARS) {
     abstract_text <- paste0(str_sub(abstract_text, 1, LLM_MAX_ABSTRACT_CHARS), " [abstract truncated]")
@@ -188,8 +191,10 @@ build_prompt <- function(title, abstract, source, date, identifier) {
     "- high: relevant empirical ESM/EMA work with dataset_candidate=true and explicit open data evidence.\n",
     "- medium: relevant empirical ESM/EMA work where access is not stated or explicitly restricted.\n",
     "- low: irrelevant, non-empirical, title-only, weakly evidenced, or non-human-behavior records.\n\n",
-    "For data_access_status, use explicit_open only for explicit statements that the dataset is public, ",
-    "open, downloadable, or available from a named repository. Use explicit_restricted only for explicit access ",
+    "For data_access_status, use explicit_open only when the abstract itself states that the participant data ",
+    "(not only code, materials, preregistration, or the paper) are public, downloadable, or available from a ",
+    "named repository or link. A study analysing an existing public dataset counts only if the abstract names ",
+    "where that dataset is available. Use explicit_restricted only for explicit access ",
     "restrictions. Use not_stated when the metadata says nothing about data access. Use unclear only when the ",
     "metadata is ambiguous or contradictory.\n\n",
     "Required JSON fields: relevant_esm (boolean), empirical_study (boolean), ",
@@ -197,9 +202,7 @@ build_prompt <- function(title, abstract, source, date, identifier) {
     "priority (one of high/medium/low), confidence (number from 0 to 1), ",
     "and reason (short evidence-based string).\n\n",
     "Candidate metadata:\n",
-    "source: ", source, "\n",
     "date: ", date, "\n",
-    "identifier: ", identifier, "\n",
     "title: ", title, "\n",
     "abstract: ", abstract_text
   )
@@ -208,13 +211,9 @@ build_prompt <- function(title, abstract, source, date, identifier) {
 triage_one <- function(candidate) {
   title <- safe_text(candidate[["title"]])
   abstract <- safe_text(candidate[["abstract_text"]])
-  source <- if ("source" %in% names(candidate)) safe_text(candidate[["source"]]) else ""
   date <- if ("date" %in% names(candidate)) safe_text(candidate[["date"]]) else ""
-  doi <- if ("doi" %in% names(candidate)) safe_text(candidate[["doi"]]) else ""
-  raw_id <- if ("raw_id" %in% names(candidate)) safe_text(candidate[["raw_id"]]) else ""
-  identifier <- if (doi != "") doi else raw_id
 
-  prompt <- build_prompt(title, abstract, source, date, identifier)
+  prompt <- build_prompt(title, abstract, date)
   # This spike assumes the provider supports OpenAI-compatible JSON mode.
   request_object <- request(paste0(str_remove(LLM_BASE_URL, "/+$"), "/chat/completions")) |>
     req_headers(
