@@ -29,7 +29,7 @@ if (length(missing_columns) > 0) {
   stop(sprintf("Triage CSV is missing columns: %s", paste(missing_columns, collapse = ", ")))
 }
 # older discovery csvs predate the osf data-link columns.
-for (column in c("osf_data_links", "triage_model", "triage_prompt_version")) {
+for (column in c("osf_data_links", "all_dois", "triage_model", "triage_prompt_version")) {
   if (!column %in% names(triage)) triage[[column]] <- NA_character_
 }
 
@@ -112,12 +112,16 @@ render_candidate <- function(row) {
     if (!is.na(row[["osf_view_only_links"]])) paste0("OSF view-only link (review access, may not be public): ", row[["osf_view_only_links"]]),
     if (isTRUE(row[["llm_open"]])) "LLM: explicit open data in abstract"
   )
+  other_dois <- setdiff(str_split(safe_text(row[["all_dois"]]), ";")[[1]], c("", safe_text(row[["doi"]])))
+  other_line <- if (length(other_dois) == 0) "" else
+    paste0("\n  - Also: ", paste0("https://doi.org/", other_dois, collapse = " "))
   paste0(
     "- **", title_line, "**\n",
     "  - Date: ", markdown_text(row[["date"]], "Unknown"), " | Source: ", markdown_text(row[["source"]], "Unknown"),
     " | Confidence: ", markdown_text(row[["confidence"]], "Unknown"), "\n",
     "  - Evidence: ", markdown_text(paste(evidence, collapse = "; "), "None"), "\n",
-    "  - Reason: ", markdown_text(row[["reason"]])
+    "  - Reason: ", markdown_text(row[["reason"]]),
+    other_line
   )
 }
 

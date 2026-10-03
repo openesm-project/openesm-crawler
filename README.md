@@ -45,7 +45,7 @@ $env:CANDIDATE_CSV="output/candidates.csv"
 Rscript scripts/step1_esm_discovery_spike.R
 ```
 
-The discovery script prints diagnostics and writes the full filtered candidate object, including title, abstract, DOI/source identifiers, and matching fields.
+The discovery script prints diagnostics and writes the full filtered candidate object, including title, abstract, DOI/source identifiers, and matching fields. OpenAlex is searched with quoted phrases; software, review, editorial, and similar record types are dropped; matches on "EMA" alone also need a daily-life context word (e.g., momentary, smartphone, diary). Records are merged by DOI (ignoring PsyArXiv `_vN` versions) and then by title, with all merged DOIs kept in `all_dois`.
 
 ## Triage
 

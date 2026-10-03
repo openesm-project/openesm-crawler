@@ -56,6 +56,11 @@ TERM_SET <- c(
 )
 EMA_TERM <- "ema"
 CORE_TERMS <- TERM_SET[TERM_SET != EMA_TERM]
+# ema-only matches must also mention a daily-life sampling context (filters medicines agency, moving averages).
+EMA_CONTEXT_PATTERN <- "momentar|daily life|everyday life|smartphone|\\bprompt|\\bbeep|diary|diaries|real[- ]time|in[- ]the[- ]moment|times (a|per) day|ambulatory"
+EXCLUDED_WORK_TYPES <- c("software", "paratext", "erratum", "retraction", "peer-review", "editorial", "letter", "review")
+# titles shorter than this are too generic to merge on.
+MIN_TITLE_KEY_CHARS <- 30L
 
 START_DATE <- Sys.Date() - LOOKBACK_DAYS
 END_DATE <- Sys.Date()
@@ -291,7 +296,8 @@ fetch_openalex_by_term <- function(term, start_date, end_date, mailto) {
           "from_publication_date:", start_date,
           ",to_publication_date:", end_date
         ),
-        search = term,
+        # quoted phrase search; unquoted multi-word terms match the words anywhere (14k vs 127 rows per week).
+        search = paste0('"', term, '"'),
         cursor = cursor,
         `per-page` = OPENALEX_PER_PAGE
       )
@@ -343,6 +349,7 @@ fetch_openalex_by_term <- function(term, start_date, end_date, mailto) {
         linked_project_available = FALSE,
         raw_id = safe_chr(purrr::pluck(item, "id", .default = NA_character_)),
         matched_query_term = term,
+        work_type = safe_chr(purrr::pluck(item, "type", .default = NA_character_)),
         stringsAsFactors = FALSE
       )
     })
@@ -361,6 +368,7 @@ fetch_openalex_by_term <- function(term, start_date, end_date, mailto) {
       doi_raw = character(), doi = character(), source = character(), date = character(),
       title = character(), abstract_text = character(), abstract_available = logical(),
       linked_project_available = logical(), raw_id = character(), matched_query_term = character(),
+      work_type = character(),
       stringsAsFactors = FALSE
     )
     attr(out, "term") <- term
@@ -629,7 +637,8 @@ for (i in seq_len(nrow(openalex_health_df))) {
 
 if (nrow(openalex_raw) > 0) {
   openalex_raw <- openalex_raw |>
-    distinct(raw_id, .keep_all = TRUE)
+    distinct(raw_id, .keep_all = TRUE) |>
+    filter(!work_type %in% EXCLUDED_WORK_TYPES)
 }
 
 cli::cli_h2("Fetching OSF PsyArXiv preprints")
@@ -651,49 +660,45 @@ if (nrow(combined_raw) == 0) {
   cli::cli_alert_warning("No records fetched from either source in the selected window.")
 }
 
-with_doi <- combined_raw |>
-  filter(!is.na(doi))
-
-without_doi <- combined_raw |>
-  filter(is.na(doi))
-
-deduped_with_doi <- if (nrow(with_doi) > 0) {
-  with_doi |>
-    # psyarxiv versions (_v1, _v2) of one preprint can differ between openalex and osf.
-    group_by(dedupe_key = str_remove(doi, "_v[0-9]+$")) |>
-    summarise(
-      doi = first(doi),
-      doi_raw = first(doi_raw),
-      source = paste(sort(unique(source)), collapse = "+"),
-      date = suppressWarnings(max(date, na.rm = TRUE)),
-      title = first(title[!is.na(title) & title != ""]),
-      abstract_text = first(abstract_text[!is.na(abstract_text) & abstract_text != ""]),
-      abstract_available = any(abstract_available, na.rm = TRUE),
-      linked_project_available = any(linked_project_available, na.rm = TRUE),
-      raw_id = first(raw_id),
-      matched_query_term = collapse_or_na(matched_query_term),
-      osf_has_data_links = first(osf_has_data_links[!is.na(osf_has_data_links)]),
-      osf_data_links = collapse_or_na(osf_data_links),
-      .groups = "drop"
-    ) |>
-    select(-dedupe_key)
-} else {
-  with_doi
+split_collapse <- function(x, sep = ";") {
+  collapse_or_na(unlist(str_split(x[!is.na(x)], fixed(sep))), sep = sep)
 }
 
-if (nrow(deduped_with_doi) > 0) {
-  empty_title_idx <- which(is.na(deduped_with_doi$title) | deduped_with_doi$title == "")
-  if (length(empty_title_idx) > 0) {
-    deduped_with_doi$title[empty_title_idx] <- NA_character_
-  }
-
-  empty_abstract_idx <- which(is.na(deduped_with_doi$abstract_text) | deduped_with_doi$abstract_text == "")
-  if (length(empty_abstract_idx) > 0) {
-    deduped_with_doi$abstract_text[empty_abstract_idx] <- NA_character_
-  }
+# merges each group into one record; list-like fields are ";"-joined so merges can be chained.
+merge_records <- function(grouped) {
+  summarise(
+    grouped,
+    doi = first(doi[!is.na(doi)]),
+    doi_raw = first(doi_raw[!is.na(doi_raw)]),
+    all_dois = split_collapse(all_dois),
+    source = split_collapse(source, sep = "+"),
+    date = suppressWarnings(max(date, na.rm = TRUE)),
+    title = first(title[!is.na(title) & title != ""]),
+    abstract_text = first(abstract_text[!is.na(abstract_text) & abstract_text != ""]),
+    abstract_available = any(abstract_available, na.rm = TRUE),
+    linked_project_available = any(linked_project_available, na.rm = TRUE),
+    raw_id = first(raw_id),
+    matched_query_term = split_collapse(matched_query_term),
+    work_type = split_collapse(work_type),
+    osf_has_data_links = first(osf_has_data_links[!is.na(osf_has_data_links)]),
+    osf_data_links = split_collapse(osf_data_links),
+    .groups = "drop"
+  )
 }
 
-combined_deduped <- bind_rows(deduped_with_doi, without_doi)
+combined_deduped <- combined_raw |>
+  mutate(all_dois = doi) |>
+  # psyarxiv versions (_v1, _v2) of one preprint can differ between openalex and osf.
+  group_by(merge_key = coalesce(str_remove(doi, "_v[0-9]+$"), paste0("id:", raw_id))) |>
+  merge_records() |>
+  # same work under several dois: repository versions, publisher supplements, preprint copies.
+  mutate(
+    merge_key = str_remove_all(str_to_lower(coalesce(title, "")), "[^[:alnum:]]"),
+    merge_key = if_else(nchar(merge_key) >= MIN_TITLE_KEY_CHARS, merge_key, paste0("row:", row_number()))
+  ) |>
+  group_by(merge_key) |>
+  merge_records() |>
+  select(-merge_key)
 
 if (nrow(combined_deduped) > 0) {
   match_flags <- lapply(seq_len(nrow(combined_deduped)), function(i) {
@@ -716,8 +721,17 @@ if (nrow(combined_deduped) > 0) {
 
 candidates <- combined_deduped |>
   filter(prefilter_pass) |>
-  mutate(date = as.character(date)) |>
+  mutate(
+    date = as.character(date),
+    ema_context = str_detect(
+      paste(coalesce(title, ""), coalesce(abstract_text, "")),
+      regex(EMA_CONTEXT_PATTERN, ignore_case = TRUE)
+    )
+  ) |>
   arrange(desc(date))
+ema_without_context_count <- sum(candidates$ema_exclusive & !candidates$ema_context, na.rm = TRUE)
+candidates <- candidates |>
+  filter(!ema_exclusive | ema_context)
 
 if (CANDIDATE_CSV != "") {
   write.csv(candidates, file = CANDIDATE_CSV, row.names = FALSE, na = "")
@@ -767,7 +781,7 @@ cli::cli_h2("Filter Metrics")
 cli::cli_text("Total candidates passing boolean prefilter: {prefilter_pass_total}")
 cli::cli_text("Candidates passing title-only matching: {title_only_count}")
 cli::cli_text("Candidates passing abstract-supported matching: {abstract_supported_count}")
-cli::cli_text("EMA-exclusive matches: {ema_exclusive_count}")
+cli::cli_text("EMA-exclusive matches kept: {ema_exclusive_count} (dropped without daily-life context: {ema_without_context_count})")
 
 cli::cli_h2("Candidate Table")
 if (nrow(candidates) == 0) {
