@@ -122,6 +122,8 @@ get_retry_after_seconds <- function(response) {
 }
 
 request_with_retries <- function(request_object) {
+  # httr2 errors on 4xx/5xx by default, which would skip the status and retry-after handling below.
+  request_object <- req_error(request_object, is_error = function(response) FALSE)
   for (attempt in seq_len(MAX_RETRIES)) {
     response <- tryCatch(req_perform(request_object), error = function(error) error)
 

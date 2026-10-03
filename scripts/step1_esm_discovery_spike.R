@@ -231,6 +231,8 @@ request_with_retries <- function(req, source_name, max_retries = MAX_RETRIES) {
     suppressWarnings(as.numeric(retry_after[[1]]))
   }
 
+  # httr2 errors on 4xx/5xx by default, which would skip the status and retry-after handling below.
+  req <- req_error(req, is_error = function(resp) FALSE)
   attempt <- 1L
   repeat {
     resp <- tryCatch(req_perform(req), error = function(e) e)
